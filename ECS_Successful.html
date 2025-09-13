@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>धन्यवाद संदेश भेजें (ECS स्वीकृति)</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f1f1f1;
+      padding: 20px;
+    }
+    .container {
+      background: white;
+      max-width: 750px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    label {
+      font-weight: 600;
+      display: block;
+      margin-top: 15px;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-top: 5px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #1e88e5;
+      color: white;
+      padding: 14px 22px;
+      border: none;
+      border-radius: 8px;
+      margin-top: 25px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1565c0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>💖 स्वीकृत ECS के लिए धन्यवाद संदेश भेजें</h2>
+
+  <label>सदस्य का नाम:</label>
+  <input type="text" id="memberName" placeholder="उदाहरण: रेखा वर्मा">
+
+  <label>मोबाइल नंबर (10 digit):</label>
+  <input type="tel" id="mobileNumber" placeholder="उदाहरण: 8448334245">
+
+  <label>किश्त राशि (₹):</label>
+  <input type="number" id="amount" placeholder="उदाहरण: 6200">
+
+  <button onclick="sendWhatsApp()">📨 WhatsApp से धन्यवाद भेजें</button>
+</div>
+
+<script>
+function sendWhatsApp() {
+  const name = document.getElementById("memberName").value.trim();
+  const mobile = document.getElementById("mobileNumber").value.trim();
+  const amount = document.getElementById("amount").value.trim();
+
+  if (!name || !mobile || !amount) {
+    alert("कृपया सभी फ़ील्ड भरें।");
+    return;
+  }
+
+  const message = `प्रिय ${name}, 
+
+आपकी ₹${amount} की किस्त सफलतापूर्वक Auto Debit के माध्यम से प्राप्त हो गई है। 
+
+🙏 *आपका धन्यवाद!*  
+आपका समय पर भुगतान हमारी संस्था के लिए न सिर्फ़ वित्तीय सहयोग है बल्कि हमारे आपसी विश्वास और जिम्मेदारी का प्रमाण भी है। 
+
+आपकी प्रतिबद्धता और विश्वास के लिए हम हृदय से आभारी हैं।  
+ईश्वर से प्रार्थना है कि आपकी समृद्धि और खुशहाली सदैव बनी रहे।
+
+धन्यवाद एवं शुभकामनाएं,  
+
+*BABA SAI KRIPA CO-OP. (U) T&C SOCIETY Ltd.*  
+📞 01169655241 | 📲 WhatsApp: 8448334245  
+📧 mailsaikripa.cr@gmail.com  
+🌐 www.babasaikripa.in`;
+
+  const encodedMessage = encodeURIComponent(message);
+  const whatsappURL = `https://web.whatsapp.com/send?phone=91${mobile}&text=${encodedMessage}`;
+
+  window.open(whatsappURL, '_blank');
+}
+</script>
+
+</body>
+</html>

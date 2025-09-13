@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome Message via WhatsApp</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f9f7;
+      padding: 25px;
+      max-width: 500px;
+      margin: auto;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      background-color: #27ae60;
+      color: white;
+      padding: 12px;
+      border: none;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #219150;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Welcome Message via WhatsApp</h2>
+
+  <label for="name">नाम:</label>
+  <input type="text" id="name" placeholder="अपना नाम दर्ज करें" required>
+
+  <label for="number">मोबाइल नंबर (10 अंक):</label>
+  <input type="text" id="number" placeholder="उदाहरण: 9876543210" required>
+
+  <label for="account">खाता संख्या:</label>
+  <input type="text" id="account" placeholder="उदाहरण: 1234567890" required>
+
+  <button onclick="sendWhatsAppMessage()">Submit</button>
+
+  <script>
+    function sendWhatsAppMessage() {
+      const name = document.getElementById("name").value.trim();
+      const number = document.getElementById("number").value.trim();
+      const account = document.getElementById("account").value.trim();
+
+      if (name === "" || number === "" || account === "") {
+        alert("कृपया सभी जानकारी भरें।");
+        return;
+      }
+
+      if (!/^\d{10}$/.test(number)) {
+        alert("कृपया वैध 10 अंकों का मोबाइल नंबर दर्ज करें।");
+        return;
+      }
+
+      const message = `*प्रिय ${name},*\n\n🙏 आपका *Baba Sai Kripa Co-op. (U) T/C Society Ltd.* में हार्दिक स्वागत है! 🙏\n\nहमें यह बताते हुए खुशी हो रही है कि आपका खाता *(खाता संख्या: ${account})* सफलतापूर्वक खोल दिया गया है।\n\nयदि आपको कोई सहायता चाहिए, तो कृपया हमारे *WhatsApp ग्राहक सेवा (WhatsApp only)* 8448334245 पर संपर्क करें या *Customer Care* 01169655241 पर कॉल करें।\n\n🔔 *Updates & Offers* के लिए हमारे WhatsApp चैनल को फ़ॉलो करें:\n👉 https://whatsapp.com/channel/0029VakzL0SJP20yXnNDq83z\n\n🎁 *अपने दोस्तों को रेफर करें और हर सफल रेफरल पर ₹200 का इनाम पाएं!*\n\nसादर,\n*Baba Sai Kripa Co-op. (U) T/C Society Ltd.*`;
+
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappURL = `https://web.whatsapp.com/send?phone=91${number}&text=${encodedMessage}`;
+
+      window.open(whatsappURL, "_blank");
+    }
+  </script>
+
+</body>
+</html>
