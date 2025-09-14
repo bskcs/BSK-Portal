@@ -7,7 +7,7 @@
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
-      background: #FFCCCB;
+      background: #FF2121;
     }
     .container {
       max-width: 750px;
@@ -43,25 +43,25 @@
 <body>
 
 <div class="container">
-  <h2>📤 Auto Debit अस्वीकृति सूचना भेजें</h2>
+  <h2>📤 ECS Rejected Message Sender</h2>
 
-  <label>सदस्य का नाम:</label>
+  <label>Name of Member (सदस्य का नाम:)</label>
   <input type="text" id="memberName" placeholder="उदाहरण: सुमित शर्मा">
 
   <label>मोबाइल नंबर (10 digit):</label>
   <input type="tel" id="mobileNumber" placeholder="उदाहरण: 8448334245">
 
-  <label>Auto Debit राशि (₹):</label>
+  <label>ECS Amount (राशि) (₹):</label>
   <input type="number" id="autoDebitAmount" placeholder="उदाहरण: 6200">
 
-  <label>अस्वीकृति का कारण:</label>
+  <label>Reason for Rejection (अस्वीकृति का कारण):</label>
   <select id="reason">
     <option value="Technical">Technical</option>
     <option value="Insufficient Fund">Insufficient Fund</option>
     <option value="Other">Other</option>
   </select>
 
-  <button onclick="sendWhatsApp()">📨 WhatsApp से भेजें</button>
+  <button onclick="sendWhatsApp()">📨 WhatsApp पर भेजें</button>
 </div>
 
 <script>
@@ -83,7 +83,7 @@ function sendWhatsApp() {
 कृपया समय पर भुगतान करें और अपना CIBIL स्कोर सही बनाए रखें, ताकि भविष्य में ऋण प्राप्त करने में कोई परेशानी न हो। अधिक जानकारी के लिए हमसे संपर्क करें।
 
 धन्यवाद,  
-*BABA SAI KRIPA CO-OPERATIVE (URBAN) THRIFT & CREDIT SOCIETY LIMITED*  
+*BABA SAI KRIPA CO-OPERATIVE (U) T&C SOCIETY LTD*  
 📞 01169655241 या WhatsApp 📲 8448334245  
 📧 mailsaikripa.cr@gmail.com  
 🌐 www.babasaikripa.in`;
@@ -97,4 +97,5 @@ function sendWhatsApp() {
 
 </body>
 </html>
+
 
