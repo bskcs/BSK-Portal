@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>FDR Maturity Message Sender</title>
+  <style>
+    body {
+      background-color: #eef5ff;
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 20px auto;
+      color: #003366;
+      padding: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #004080;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .input-group {
+      flex: 1 1 45%;
+      min-width: 250px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+      color: #002244;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1.5px solid #007bff;
+      border-radius: 6px;
+      font-size: 15px;
+      box-sizing: border-box;
+      font-weight: 600;
+    }
+
+    button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .add-btn {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .send-btn {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .send-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .fd-block {
+      background: #ffffff;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 20px;
+      position: relative;
+    }
+
+    .remove-btn {
+      background-color: #dc3545;
+      color: black;
+      position: absolute;
+      top: -18px;
+      right: 10px;
+      padding: 5px 5px;
+      border: none;
+      border-radius: 0px;
+      cursor: pointer;
+    }
+
+    .remove-btn:hover {
+      background-color: #042dfb;
+    }
+
+    #messagePreview {
+      margin-top: 30px;
+      background: #f0f8ff;
+      border-left: 4px solid #007bff;
+      padding: 15px;
+      border-radius: 6px;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>SEND FDR MATURITY INOFORMATION TO MEMEBERS</h1>
+
+  <div class="row">
+    <div class="input-group">
+      <label for="MemberName">Member Name:</label>
+      <input type="text" id="memberName" placeholder="Enter Member Name" />
+    </div>
+    <div class="input-group">
+      <label for="phoneNumber">Mobile Number (10 Digit):</label>
+      <input type="text" id="phoneNumber" maxlength="10" placeholder="Like 9876543210" />
+    </div>
+  </div>
+
+  <div id="fdContainer"></div>
+
+  <button class="add-btn" onclick="addFD()">➕ ADD FDR</button>
+  <button class="send-btn" onclick="generateMessage()">📨 Send on WhatsApp</button>
+
+  <div id="messagePreview"></div>
+
+  <script>
+    function formatDate(d) {
+      const date = new Date(d);
+      return isNaN(date) ? "" : `${("0" + date.getDate()).slice(-2)}/${("0" + (date.getMonth() + 1)).slice(-2)}/${date.getFullYear()}`;
+    }
+
+    function addFD() {
+      const container = document.getElementById("fdContainer");
+      const block = document.createElement("div");
+      block.className = "fd-block";
+
+      block.innerHTML = `
+        <button class="remove-btn" onclick="this.parentElement.remove()">✖</button>
+
+        <div class="row">
+          <div class="input-group">
+            <label>FDR Number:</label>
+            <input type="text" class="fdrNo" placeholder="FDR Number" />
+          </div>
+          <div class="input-group">
+            <label>Type:</label>
+            <select class="fdRdType">
+              <option value="FD">FD</option>
+              <option value="RD">RD</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-group">
+            <label>Start Date:</label>
+            <input type="date" class="startDate" />
+          </div>
+          <div class="input-group">
+            <label>Maturity Date:</label>
+            <input type="date" class="maturityDate" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-group">
+            <label>Invested Amount ₹:</label>
+            <input type="number" class="amountInvested" placeholder="Like 50000" />
+          </div>
+          <div class="input-group">
+            <label>Maturity Amount ₹:</label>
+            <input type="number" class="maturityAmount" placeholder="Like 56229" />
+          </div>
+        </div>
+      `;
+      container.appendChild(block);
+    }
+
+    function generateMessage() {
+      const name = document.getElementById("memberName").value.trim();
+      const phone = document.getElementById("phoneNumber").value.trim();
+      const fdBlocks = document.querySelectorAll(".fd-block");
+
+      if (!name || !/^\d{10}$/.test(phone)) {
+        alert("Please enter valid name and mobile number");
+        return;
+      }
+
+      if (fdBlocks.length === 0) {
+        alert("Please add atleast one FDR।");
+        return;
+      }
+
+      let details = "";
+      let allValid = true;
+
+      fdBlocks.forEach(block => {
+        const fdrNo = block.querySelector(".fdrNo").value.trim();
+        const fdRdType = block.querySelector(".fdRdType").value;
+        const start = block.querySelector(".startDate").value;
+        const maturity = block.querySelector(".maturityDate").value;
+        const invested = block.querySelector(".amountInvested").value.trim();
+        const matured = block.querySelector(".maturityAmount").value.trim();
+
+        if (!fdrNo || !start || !maturity || !invested || !matured) {
+          allValid = false;
+          return;
+        }
+
+        const startFmt = formatDate(start);
+        const matureFmt = formatDate(maturity);
+
+        details += `🔸 FDR नंबर *${fdrNo}* (${fdRdType}) जो दिनांक *${startFmt}* को ₹${parseFloat(invested).toLocaleString('hi-IN')} के साथ प्रारंभ हुई थी,\n` +
+                   `      वह *${matureFmt}* को ₹${parseFloat(matured).toLocaleString('hi-IN')} के साथ मेच्योर हो रही है।\n\n`;
+      });
+
+      if (!allValid) {
+        alert("कृपया सभी FDR प्रविष्टियाँ सही से भरें।");
+        return;
+      }
+
+      const finalMsg = `🌸 *बाबा साईं कृपा सोसायटी* की ओर से आपको हार्दिक शुभकामनाएँ।\n\n` +
+        `प्रिय ${name} जी,\n\n${details}` +
+        `कृपया मेच्योरिटी की तिथि पर समय से कार्यालय में संपर्क करें।\n\n` +
+        `🔔 निकासी से पहले हमारी वेबसाइट पर नई निवेश योजनाएं ज़रूर देखें:\n🌐 https://babasaikripa.in\n\n` +
+        `📲 हमारे WhatsApp चैनल व Instagram से जुड़ें\n☎️ कस्टमर केयर: 011-69655241 | WhatsApp: 8448334245\n\n` +
+        `आपके विश्वास व सहयोग के लिए हम ह्रदय से कृतज्ञ हैं।\n\n🙏 *बाबा साईं कृपा सोसायटी*`;
+
+      document.getElementById("messagePreview").innerText = finalMsg;
+
+      // Directly open WhatsApp Web with the message
+      const encoded = encodeURIComponent(finalMsg);
+      const waUrl = `https://web.whatsapp.com/send?phone=91${phone}&text=${encoded}`;
+      window.open(waUrl, "_blank");
+    }
+
+    // Add one FDR block by default
+    window.onload = addFD;
+  </script>
+
+</body>
+</html>
