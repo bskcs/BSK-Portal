@@ -11,13 +11,11 @@
       margin: 0;
     }
 
-    /* ===== TOP NAVBAR ===== */
+    /* TOP NAVBAR */
     .navbar {
       display: flex;
       background-color: #007bff;
-      padding: 0;
       margin: 0;
-      overflow: hidden;
     }
 
     .tab-button {
@@ -29,7 +27,6 @@
       border: none;
       background-color: #007bff;
       font-weight: bold;
-      transition: background 0.3s ease;
     }
 
     .tab-button:hover,
@@ -37,15 +34,15 @@
       background-color: #0056b3;
     }
 
-    /* ===== MAIN LAYOUT ===== */
+    /* MAIN LAYOUT */
     .main-container {
       display: flex;
       height: calc(100vh - 50px);
     }
 
-    /* ===== SIDE BARS ===== */
+    /* SIDE BARS */
     .sidebar {
-      width: 220px;
+      width: 230px;
       background: #f2f2f2;
       padding: 10px;
       overflow-y: auto;
@@ -68,7 +65,7 @@
       background: #084298;
     }
 
-    /* ===== IFRAME ===== */
+    /* IFRAME */
     iframe {
       flex: 1;
       border: none;
@@ -79,7 +76,7 @@
 
 <body>
 
-<!-- ===== TOP NAVBAR ===== -->
+<!-- TOP NAVBAR -->
 <div class="navbar">
   <button class="tab-button active" onclick="loadPage('Home.html', this)">Home</button>
   <button class="tab-button" onclick="loadPage('Welcome Msg.html', this)">Welcome Msg</button>
@@ -90,77 +87,58 @@
   <button class="tab-button" onclick="loadPage('ECS_Reject.html', this)">ECS_Reject</button>
 </div>
 
-<!-- ===== BODY ===== -->
+<!-- BODY -->
 <div class="main-container">
 
-  <!-- LEFT SIDEBAR (PDFs 1–10) -->
+  <!-- LEFT SIDEBAR (1–15) -->
   <div class="sidebar">
-    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Address%20Verification2025.pdf')">
-      Address Verification 2025
-    </button>
-
-    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Byelaws.pdf')">
-      Byelaws
-    </button>
-
-    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Cheque%20Returning%20Letter.pdf')">
-      Cheque Returning Letter
-    </button>
-
-    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/ECS%20Form.pdf')">
-      ECS Form
-    </button>
-
-    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Loan%20Form%202025.pdf')">
-      Loan Form 2025
-    </button>
-
-    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Loan%20Form%20Single.pdf')">
-      Loan Form Single
-    </button>
-
-    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Member%20Details%20Updation.pdf')">
-      Member Details Updation
-    </button>
-
-    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/MemberClosing_A.pdf')">
-      Member Closing A
-    </button>
-
-    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/MemberClosing_B.pdf')">
-      Member Closing B
-    </button>
-
-    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Membership%20Form%202025.pdf')">
-      Membership Form 2025
-    </button>
+    <button>PDF Button 1</button>
+    <button>PDF Button 2</button>
+    <button>PDF Button 3</button>
+    <button>PDF Button 4</button>
+    <button>PDF Button 5</button>
+    <button>PDF Button 6</button>
+    <button>PDF Button 7</button>
+    <button>PDF Button 8</button>
+    <button>PDF Button 9</button>
+    <button>PDF Button 10</button>
+    <button>PDF Button 11</button>
+    <button>PDF Button 12</button>
+    <button>PDF Button 13</button>
+    <button>PDF Button 14</button>
+    <button>PDF Button 15</button>
   </div>
 
   <!-- CENTER -->
   <iframe id="contentFrame" src="Home.html"></iframe>
 
-  <!-- RIGHT SIDEBAR (READY FOR FUTURE PDFs) -->
+  <!-- RIGHT SIDEBAR (16–30) -->
   <div class="sidebar">
-    <button disabled>More PDFs (Future)</button>
-    <button disabled>More PDFs (Future)</button>
-    <button disabled>More PDFs (Future)</button>
-    <button disabled>More PDFs (Future)</button>
-    <button disabled>More PDFs (Future)</button>
+    <button>PDF Button 16</button>
+    <button>PDF Button 17</button>
+    <button>PDF Button 18</button>
+    <button>PDF Button 19</button>
+    <button>PDF Button 20</button>
+    <button>PDF Button 21</button>
+    <button>PDF Button 22</button>
+    <button>PDF Button 23</button>
+    <button>PDF Button 24</button>
+    <button>PDF Button 25</button>
+    <button>PDF Button 26</button>
+    <button>PDF Button 27</button>
+    <button>PDF Button 28</button>
+    <button>PDF Button 29</button>
+    <button>PDF Button 30</button>
   </div>
 
 </div>
 
-<!-- ===== SCRIPT ===== -->
 <script>
   function loadPage(page, btn) {
     document.getElementById('contentFrame').src = page;
     document.querySelectorAll('.tab-button')
       .forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-  }
-
-  function openPDF(url) {
-    window.open(url, '_blank');
   }
 </script>
 
