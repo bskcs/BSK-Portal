@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>BSKCS-Service Portal</title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -10,6 +11,7 @@
       margin: 0;
     }
 
+    /* ===== TOP NAVBAR (SAME AS YOUR ORIGINAL) ===== */
     .navbar {
       display: flex;
       background-color: #007bff;
@@ -35,15 +37,48 @@
       background-color: #0056b3;
     }
 
-    iframe {
-      width: 100%;
+    /* ===== MAIN LAYOUT (NEW, MINIMAL) ===== */
+    .main-container {
+      display: flex;
       height: calc(100vh - 50px);
+    }
+
+    /* ===== SIDE BARS ===== */
+    .sidebar {
+      width: 180px;
+      background: #f2f2f2;
+      padding: 10px;
+      overflow-y: auto;
+    }
+
+    .sidebar button {
+      width: 100%;
+      margin-bottom: 8px;
+      padding: 10px;
       border: none;
+      background: #0d6efd;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .sidebar button:hover {
+      background: #084298;
+    }
+
+    /* ===== IFRAME ===== */
+    iframe {
+      flex: 1;
+      border: none;
+      background: #e0e0e0;
     }
   </style>
 </head>
+
 <body>
 
+  <!-- ===== TOP NAVBAR ===== -->
   <div class="navbar">
     <button class="tab-button active" onclick="loadPage('Home.html', this)">Home</button>
     <button class="tab-button" onclick="loadPage('Welcome Msg.html', this)">Welcome Msg</button>
@@ -51,28 +86,56 @@
     <button class="tab-button" onclick="loadPage('BSK-Envelop.html', this)">BSK-Envelop</button>
     <button class="tab-button" onclick="loadPage('RCS-Envelop.html', this)">RCS-Envelop</button>
     <button class="tab-button" onclick="loadPage('ECS_Successful.html', this)">ECS_Successful</button>
-    <button class="tab-button" onclick="loadPage('ECS_Reject.html', this)">ECS_Reject</button>    
+    <button class="tab-button" onclick="loadPage('ECS_Reject.html', this)">ECS_Reject</button>
   </div>
 
-  <iframe id="contentFrame" src="Home.html"></iframe>
+  <!-- ===== BODY ===== -->
+  <div class="main-container">
 
+    <!-- LEFT SIDEBAR (1–10) -->
+    <div class="sidebar">
+      <button>Button 1</button>
+      <button>Button 2</button>
+      <button>Button 3</button>
+      <button>Button 4</button>
+      <button>Button 5</button>
+      <button>Button 6</button>
+      <button>Button 7</button>
+      <button>Button 8</button>
+      <button>Button 9</button>
+      <button>Button 10</button>
+    </div>
+
+    <!-- CENTER IFRAME -->
+    <iframe id="contentFrame" src="Home.html"></iframe>
+
+    <!-- RIGHT SIDEBAR (11–20) -->
+    <div class="sidebar">
+      <button>Button 11</button>
+      <button>Button 12</button>
+      <button>Button 13</button>
+      <button>Button 14</button>
+      <button>Button 15</button>
+      <button>Button 16</button>
+      <button>Button 17</button>
+      <button>Button 18</button>
+      <button>Button 19</button>
+      <button>Button 20</button>
+    </div>
+
+  </div>
+
+  <!-- ===== SCRIPT (UNCHANGED) ===== -->
   <script>
     function loadPage(page, btn) {
       document.getElementById('contentFrame').src = page;
 
-      // Remove active class from all buttons
       const buttons = document.querySelectorAll('.tab-button');
       buttons.forEach(b => b.classList.remove('active'));
 
-      // Add active class to clicked button
       btn.classList.add('active');
     }
   </script>
 
 </body>
 </html>
-
-
-
-
-
