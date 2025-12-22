@@ -11,7 +11,7 @@
       margin: 0;
     }
 
-    /* ===== TOP NAVBAR (SAME AS YOUR ORIGINAL) ===== */
+    /* ===== TOP NAVBAR ===== */
     .navbar {
       display: flex;
       background-color: #007bff;
@@ -37,7 +37,7 @@
       background-color: #0056b3;
     }
 
-    /* ===== MAIN LAYOUT (NEW, MINIMAL) ===== */
+    /* ===== MAIN LAYOUT ===== */
     .main-container {
       display: flex;
       height: calc(100vh - 50px);
@@ -45,7 +45,7 @@
 
     /* ===== SIDE BARS ===== */
     .sidebar {
-      width: 180px;
+      width: 220px;
       background: #f2f2f2;
       padding: 10px;
       overflow-y: auto;
@@ -61,6 +61,7 @@
       font-weight: bold;
       cursor: pointer;
       border-radius: 4px;
+      text-align: left;
     }
 
     .sidebar button:hover {
@@ -78,64 +79,90 @@
 
 <body>
 
-  <!-- ===== TOP NAVBAR ===== -->
-  <div class="navbar">
-    <button class="tab-button active" onclick="loadPage('Home.html', this)">Home</button>
-    <button class="tab-button" onclick="loadPage('Welcome Msg.html', this)">Welcome Msg</button>
-    <button class="tab-button" onclick="loadPage('Maturity Msg.html', this)">Maturity Msg</button>
-    <button class="tab-button" onclick="loadPage('BSK-Envelop.html', this)">BSK-Envelop</button>
-    <button class="tab-button" onclick="loadPage('RCS-Envelop.html', this)">RCS-Envelop</button>
-    <button class="tab-button" onclick="loadPage('ECS_Successful.html', this)">ECS_Successful</button>
-    <button class="tab-button" onclick="loadPage('ECS_Reject.html', this)">ECS_Reject</button>
+<!-- ===== TOP NAVBAR ===== -->
+<div class="navbar">
+  <button class="tab-button active" onclick="loadPage('Home.html', this)">Home</button>
+  <button class="tab-button" onclick="loadPage('Welcome Msg.html', this)">Welcome Msg</button>
+  <button class="tab-button" onclick="loadPage('Maturity Msg.html', this)">Maturity Msg</button>
+  <button class="tab-button" onclick="loadPage('BSK-Envelop.html', this)">BSK-Envelop</button>
+  <button class="tab-button" onclick="loadPage('RCS-Envelop.html', this)">RCS-Envelop</button>
+  <button class="tab-button" onclick="loadPage('ECS_Successful.html', this)">ECS_Successful</button>
+  <button class="tab-button" onclick="loadPage('ECS_Reject.html', this)">ECS_Reject</button>
+</div>
+
+<!-- ===== BODY ===== -->
+<div class="main-container">
+
+  <!-- LEFT SIDEBAR (PDFs 1–10) -->
+  <div class="sidebar">
+    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Address%20Verification2025.pdf')">
+      Address Verification 2025
+    </button>
+
+    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Byelaws.pdf')">
+      Byelaws
+    </button>
+
+    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Cheque%20Returning%20Letter.pdf')">
+      Cheque Returning Letter
+    </button>
+
+    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/ECS%20Form.pdf')">
+      ECS Form
+    </button>
+
+    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Loan%20Form%202025.pdf')">
+      Loan Form 2025
+    </button>
+
+    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Loan%20Form%20Single.pdf')">
+      Loan Form Single
+    </button>
+
+    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Member%20Details%20Updation.pdf')">
+      Member Details Updation
+    </button>
+
+    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/MemberClosing_A.pdf')">
+      Member Closing A
+    </button>
+
+    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/MemberClosing_B.pdf')">
+      Member Closing B
+    </button>
+
+    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Membership%20Form%202025.pdf')">
+      Membership Form 2025
+    </button>
   </div>
 
-  <!-- ===== BODY ===== -->
-  <div class="main-container">
+  <!-- CENTER -->
+  <iframe id="contentFrame" src="Home.html"></iframe>
 
-    <!-- LEFT SIDEBAR (1–10) -->
-    <div class="sidebar">
-      <button>Button 1</button>
-      <button>Button 2</button>
-      <button>Button 3</button>
-      <button>Button 4</button>
-      <button>Button 5</button>
-      <button>Button 6</button>
-      <button>Button 7</button>
-      <button>Button 8</button>
-      <button>Button 9</button>
-      <button>Button 10</button>
-    </div>
-
-    <!-- CENTER IFRAME -->
-    <iframe id="contentFrame" src="Home.html"></iframe>
-
-    <!-- RIGHT SIDEBAR (11–20) -->
-    <div class="sidebar">
-      <button>Button 11</button>
-      <button>Button 12</button>
-      <button>Button 13</button>
-      <button>Button 14</button>
-      <button>Button 15</button>
-      <button>Button 16</button>
-      <button>Button 17</button>
-      <button>Button 18</button>
-      <button>Button 19</button>
-      <button>Button 20</button>
-    </div>
-
+  <!-- RIGHT SIDEBAR (READY FOR FUTURE PDFs) -->
+  <div class="sidebar">
+    <button disabled>More PDFs (Future)</button>
+    <button disabled>More PDFs (Future)</button>
+    <button disabled>More PDFs (Future)</button>
+    <button disabled>More PDFs (Future)</button>
+    <button disabled>More PDFs (Future)</button>
   </div>
 
-  <!-- ===== SCRIPT (UNCHANGED) ===== -->
-  <script>
-    function loadPage(page, btn) {
-      document.getElementById('contentFrame').src = page;
+</div>
 
-      const buttons = document.querySelectorAll('.tab-button');
-      buttons.forEach(b => b.classList.remove('active'));
+<!-- ===== SCRIPT ===== -->
+<script>
+  function loadPage(page, btn) {
+    document.getElementById('contentFrame').src = page;
+    document.querySelectorAll('.tab-button')
+      .forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
 
-      btn.classList.add('active');
-    }
-  </script>
+  function openPDF(url) {
+    window.open(url, '_blank');
+  }
+</script>
 
 </body>
 </html>
