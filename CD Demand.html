@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<title>Monthly CD Due – QR Payment WhatsApp</title>
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f6f8;
+    padding:20px;
+}
+.container{
+    max-width:440px;
+    margin:auto;
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+h2{
+    text-align:center;
+    color:#2c3e50;
+}
+label{
+    font-weight:bold;
+    margin-top:10px;
+    display:block;
+}
+input{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+    border-radius:5px;
+    border:1px solid #ccc;
+}
+button{
+    margin-top:20px;
+    width:100%;
+    padding:12px;
+    background:#25D366;
+    color:#fff;
+    border:none;
+    font-size:16px;
+    border-radius:6px;
+    cursor:pointer;
+}
+button:hover{
+    background:#1ebe5d;
+}
+.note{
+    font-size:12px;
+    color:#555;
+    margin-top:10px;
+    text-align:center;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+    <h2>🌸 Monthly CD Due – QR Payment</h2>
+
+    <label>Member Name</label>
+    <input type="text" id="name" placeholder="जैसे: Ramesh Kumar">
+
+    <label>Mobile Number</label>
+    <input type="text" id="mobile" placeholder="10 digit mobile number">
+
+    <label>Khata / Account Number</label>
+    <input type="text" id="khata" placeholder="जैसे: 12345">
+
+    <label>Monthly CD Amount (₹)</label>
+    <input type="number" id="amount" placeholder="जैसे: 1000">
+
+    <button onclick="sendWhatsApp()">📤 Send WhatsApp (QR Payment)</button>
+
+    <div class="note">
+        WhatsApp Web सीधे खुलेगा • Soft & respectful message
+    </div>
+</div>
+
+<script>
+function sendWhatsApp(){
+
+    var name = document.getElementById("name").value;
+    var mobile = document.getElementById("mobile").value;
+    var khata = document.getElementById("khata").value;
+    var amount = document.getElementById("amount").value;
+
+    if(name=="" || mobile=="" || khata=="" || amount==""){
+        alert("कृपया सभी जानकारी भरें");
+        return;
+    }
+
+    const today = new Date();
+    const monthName = today.toLocaleString('hi-IN', { month: 'long' });
+    const year = today.getFullYear();
+    const dateStr = today.toLocaleDateString('hi-IN');
+
+    const qrLink = "https://wa.me/p/25697261029865375/918448334245";
+
+    var message =
+`Dear ${name} जी,
+
+आशा है कि आप सपरिवार स्वस्थ, सुरक्षित एवं प्रसन्न होंगे 🌼
+ईश्वर से आपकी उत्तम सेहत और सुखद जीवन की हार्दिक कामना करते हैं।
+
+आपको स्नेहपूर्वक सूचित किया जाता है कि आपके खाता संख्या *${khata}* की
+*${monthName} ${year}* माह की Monthly CD राशि
+₹${amount} देय है (दिनांक ${dateStr} तक)।
+
+कृपया अपनी सुविधा अनुसार उक्त राशि यथाशीघ्र जमा करने का कष्ट करें,
+ताकि आपकी योजना निरंतर एवं सुरक्षित रूप से चलती रहे।
+
+🔹 *QR से भुगतान हेतु विकल्प*:
+• WhatsApp में *QR* टाइप करें
+• या नीचे दिए गए लिंक से सीधे QR पर Pay कर दें 👇
+${qrLink}
+
+📸 *भुगतान के उपरांत कृपया उसका Screenshot इसी WhatsApp Chat में साझा कर दें,*
+जिससे हम आपके खाते में तुरंत एंट्री कर सकें।
+
+🌷 *स्नेहपूर्ण सूचना*:
+यदि 6 माह तक CD जमा नहीं की जाती है, तो नियमानुसार
+₹100 प्रति 6 माह *Deferment Charge* लागू हो सकता है।
+(कृपया इसे केवल जानकारी हेतु समझें)
+
+हम आपके विश्वास और सहयोग के लिए हृदय से आभारी हैं 💐
+आपका साथ ही हमारी सबसे बड़ी ताकत है।
+
+सादर शुभकामनाओं सहित,
+
+*BABA SAI KRIPA*
+CO-OPERATIVE (URBAN)
+THRIFT & CREDIT SOCIETY LTD
+🌐 https://babasaikripa.in`;
+
+    var url = "https://web.whatsapp.com/send?phone=91" + mobile + "&text=" + encodeURIComponent(message);
+    window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>
