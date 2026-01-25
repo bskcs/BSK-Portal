@@ -1,181 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>BSKCS Service Portal</title>
+<meta charset="UTF-8">
+<title>BSKCS Service Portal</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #dfeeff;
-    }
-
-    /* TOP NAVBAR */
-    .navbar {
-      display: flex;
-      background: #007bff;
-    }
-
-    .tab-button {
-      flex: 1;
-      padding: 14px;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      background: #007bff;
-      font-weight: bold;
-    }
-
-    .tab-button:hover,
-    .tab-button.active {
-      background: #0056b3;
-    }
-
-    /* MAIN LAYOUT */
-    .main-container {
-      display: flex;
-      height: calc(100vh - 50px);
-    }
-
-    /* SIDEBAR */
-    .sidebar {
-      width: 240px;
-      background: #f2f2f2;
-      padding: 10px;
-      overflow-y: auto;
-    }
-
-    .sidebar button {
-      width: 100%;
-      margin-bottom: 8px;
-      padding: 10px;
-      border: none;
-      background: #090C38;
-      color: #fff;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 4px;
-      text-align: left;
-    }
-
-    .sidebar button:hover {
-      background: #084298;
-    }
-
-    /* CENTER */
-    iframe {
-      flex: 1;
-      border: none;
-      background: #e0e0e0;
-    }
-  </style>
+<style>
+body { margin:0; font-family:Arial,sans-serif; background:#dfeeff; }
+.navbar { display:flex; background:#007bff; }
+.tab-button { flex:1; padding:14px; color:#fff; border:none; cursor:pointer; background:#007bff; font-weight:bold; }
+.tab-button:hover,.tab-button.active { background:#0056b3; }
+.main-container { display:flex; height:calc(100vh - 50px); }
+.sidebar { width:240px; background:#f2f2f2; padding:10px; overflow-y:auto; }
+.sidebar button { width:100%; margin-bottom:8px; padding:10px; border:none; background:#090C38; color:#fff; font-weight:bold; cursor:pointer; border-radius:4px; text-align:left; }
+.sidebar button:hover { background:#084298; }
+iframe { flex:1; border:none; background:#e0e0e0; }
+</style>
 </head>
 
 <body>
 
-<!-- TOP NAV -->
+<!-- TOP NAV (same as yours) -->
 <div class="navbar">
-  <button class="tab-button active" onclick="loadPage('Home.html',this)">Home</button>
-  <button class="tab-button" onclick="loadPage('Welcome Msg.html',this)">Welcome Msg</button>
-  <button class="tab-button" onclick="loadPage('Maturity Msg.html',this)">Maturity Msg</button>
-  <button class="tab-button" onclick="loadPage('BSK-Envelop.html',this)">BSK-Envelop</button>
-  <button class="tab-button" onclick="loadPage('RCS-Envelop.html',this)">RCS-Envelop</button>
-  <button class="tab-button" onclick="loadPage('ECS_Successful.html',this)">ECS Successful</button>
-  <button class="tab-button" onclick="loadPage('ECS_Reject.html',this)">ECS Reject</button>
-  <button class="tab-button" onclick="loadPage('MDR-Calci.html',this)">Card Charges</button>
-  <button class="tab-button" onclick="loadPage('CD-Demand.html',this)">CD Message</button>
+<button class="tab-button active" onclick="loadPage('Home.html',this)">Home</button>
+<button class="tab-button" onclick="loadPage('Welcome Msg.html',this)">Welcome Msg</button>
+<button class="tab-button" onclick="loadPage('Maturity Msg.html',this)">Maturity Msg</button>
+<button class="tab-button" onclick="loadPage('BSK-Envelop.html',this)">BSK-Envelop</button>
+<button class="tab-button" onclick="loadPage('RCS-Envelop.html',this)">RCS-Envelop</button>
+<button class="tab-button" onclick="loadPage('ECS_Successful.html',this)">ECS Successful</button>
+<button class="tab-button" onclick="loadPage('ECS_Reject.html',this)">ECS Reject</button>
+<button class="tab-button" onclick="loadPage('MDR-Calci.html',this)">Card Charges</button>
+<button class="tab-button" onclick="loadPage('CD-Demand.html',this)">CD Message</button>
 </div>
 
-<!-- BODY -->
 <div class="main-container">
 
-  <!-- LEFT SIDEBAR (10 – FINAL PDFs) -->
-  <div class="sidebar">
+<!-- LEFT = OTHER FORMS (12 Buttons) -->
+<div class="sidebar">
+<button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/A4-Letter-Head.pdf')">A4 Letter Head</button>
+<button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Membership-Form25.pdf')">Membership Form</button>
+<button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Account-Closing-Form.pdf')">Account Closing Form</button>
+<button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Address-Verification.pdf')">Address Verification</button>
+<button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Cheque-Returning-Letter.pdf')">Cheque Return</button>
+<button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Member-Details-Updation.pdf')">Member Details Updation</button>
+<button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Confirmation-to-RCS.pdf')">Confirmation to RCS</button>
+<button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/ECS-Form.pdf')">ECS Form</button>
+<button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Byelaws.pdf')">Bye-laws</button>
+<button>Future PDF 1</button>
+<button>Future PDF 2</button>
+<button>Future PDF 3</button>
+</div>
 
-    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/A4-Letter-Head.pdf')">
-      A4 Letter Head
-    </button>
+<!-- CENTER -->
+<iframe id="contentFrame" src="Home.html"></iframe>
 
-    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Membership-Form25.pdf')">
-      Membership Form
-    </button>
-
-    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Loan-Form.pdf')">
-      Loan Form
-    </button>
-
-    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Loan-Checklist.pdf')">
-      Loan Checklist
-    </button>
-
-    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Loan-Form-Single.pdf')">
-      Loan Form (Secure Loan)
-    </button>
-
-    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Account-Closing-Form.pdf')">
-      Account Closing Form
-    </button>
-
-    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Address-Verification.pdf')">
-      Address Verification
-    </button>
-
-    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Cheque-Returning-Letter.pdf')">
-      Cheque Return
-    </button>
-
-    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Member-Details-Updation.pdf')">
-      Member Details Updation
-    </button>
-
-    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Confirmation-to-RCS.pdf')">
-      Confirmation to RCS
-    </button>
-
-  </div>
-
-  <!-- CENTER -->
-  <iframe id="contentFrame" src="Home.html"></iframe>
-
-  <!-- RIGHT SIDEBAR (10 – FUTURE USE) -->
-  <div class="sidebar">
-    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/ECS-Form.pdf')"> ECS Form </button>
-    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Byelaws.pdf')"> Bye-laws</button>
-    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Surety-Undertaking.pdf')">Surety-Undertaking</button>
-    <button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/F&F-Confirmation.pdf')">F&F-Confirmation</button>
-    <button>Future PDF 15</button>
-    <button>Future PDF 16</button>
-    <button>Future PDF 17</button>
-    <button>Future PDF 18</button>
-    <button>Future PDF 19</button>
-    <button>Future PDF 20</button>
-  </div>
+<!-- RIGHT = LOAN FORMS (12 Buttons) -->
+<div class="sidebar">
+<button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Loan-Form.pdf')">Loan Form</button>
+<button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Loan-Checklist.pdf')">Loan Checklist</button>
+<button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Loan-Form-Single.pdf')">Loan Form (Secure Loan)</button>
+<button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/Surety-Undertaking.pdf')">Surety Undertaking</button>
+<button onclick="openPDF('https://bskcs.github.io/BSK-Portal/pdf/F&F-Confirmation.pdf')">F&F Confirmation</button>
+<button>Future Loan PDF 6</button>
+<button>Future Loan PDF 7</button>
+<button>Future Loan PDF 8</button>
+<button>Future Loan PDF 9</button>
+<button>Future Loan PDF 10</button>
+<button>Future Loan PDF 11</button>
+<button>Future Loan PDF 12</button>
+</div>
 
 </div>
 
-<!-- SCRIPT -->
 <script>
-  function loadPage(page, btn) {
-    document.getElementById('contentFrame').src = page;
-    document.querySelectorAll('.tab-button')
-      .forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-  }
-
-  function openPDF(url) {
-    window.open(url, '_blank');
-  }
+function loadPage(page, btn) {
+document.getElementById('contentFrame').src = page;
+document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+btn.classList.add('active');
+}
+function openPDF(url) { window.open(url,'_blank'); }
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
